@@ -3,177 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Aigerim — Прости меня, жаным ♡</title>
+    <title>Aigerim — прости меня, жаным ♡</title>
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Dancing+Script:wght@700&family=Cormorant+Garamond:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            height: 100vh;
-            width: 100vw;
-            overflow: hidden;
-            background: #000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-family: 'Cormorant Garamond', serif;
-            color: #fff;
-            perspective: 5000px;
-            user-select: none;
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{
+            height:100vh;width:100vw;overflow:hidden;background:#000;
+            display:flex;justify-content:center;align-items:center;
+            font-family:'Cormorant Garamond',serif;color:#880e4f;
+            perspective:5000px;user-select:none;
         }
 
-        /* Космический фон с анимацией */
-        .cosmos {
-            position: fixed;
-            inset: 0;
-            z-index: -5;
-            background: url('https://images.unsplash.com/photo-1537420327992-d6e192287183?auto=format&fit=crop&q=80') center/cover fixed;
-            animation: cosmosMove 120s linear infinite;
+        /* Космос с плавной анимацией */
+        .cosmos{
+            position:fixed;inset:0;z-index:-5;
+            background:url('https://images.unsplash.com/photo-1537420327992-d6e192287183?auto=format&fit=crop&q=80') center/cover fixed;
+            animation:cosmosMove 180s linear infinite;
         }
-        @keyframes cosmosMove {
-            0% {
-                background-position: 0% 0%;
-            }
-            100% {
-                background-position: 100% 100%;
-            }
+        @keyframes cosmosMove{0%{background-position:0% 0%}100%{background-position:100% 100%}}
+
+        /* Бежевая неоновая книга */
+        .book{
+            width:88vw;max-width:960px;height:78vh;max-height:740px;
+            position:relative;
+            transform:rotateX(12deg);
+            animation:neonPulse 10s infinite ease-in-out;
+            z-index:10;
+        }
+        @keyframes neonPulse{
+            0%,100%{filter:drop-shadow(0 0 60px #ff69b4)}
+            50%{filter:drop-shadow(0 0 200px #ffd700) brightness(1.2)}
         }
 
-        /* Книга с 3D эффектом */
-        .book {
-            width: 80vw;
-            max-width: 940px;
-            height: 75vh;
-            max-height: 720px;
-            position: relative;
-            transform: rotateX(10deg);
-            animation: neonPulse 8s infinite ease-in-out;
-            z-index: 10;
+        .page{
+            position:absolute;inset:0;
+            background:linear-gradient(135deg,#f5e6d3,#e8d5b8,#f5e6d3);
+            border-radius:42px;
+            border:15px solid #ffd700;
+            box-shadow:0 60px 160px rgba(0,0,0,0.9),
+                       inset 0 0 220px rgba(255,215,0,0.45),
+                       0 0 120px #ff69b4;
+            padding:70px 80px;
+            display:flex;flex-direction:column;justify-content:center;align-items:center;
+            text-align:center;
+            font-size:2.4rem;line-height:2.1;
+            opacity:0;transform:scale(0.88);
+            transition:all 1.6s cubic-bezier(0.7,0,0.3,1);
         }
-        @keyframes neonPulse {
-            0%, 100% {
-                filter: drop-shadow(0 0 60px #ff69b4);
-            }
-            50% {
-                filter: drop-shadow(0 0 180px #ffd700) brightness(1.2);
-            }
+        .page.active{opacity:1;z-index:10;transform:scale(1)}
+
+        h1{
+            font-family:'Dancing Script',cursive;font-size:6.2rem;
+            color:#880e4f;
+            text-shadow:0 0 40px #ffd700;
+            margin-bottom:45px;
+            animation:neonText 6s infinite;
+        }
+        @keyframes neonText{
+            0%,100%{text-shadow:0 0 40px #ffd700}
+            50%{text-shadow:0 0 100px #ff69b4}
         }
 
-        .page {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, #f5e6d3, #e8d5b8, #f5e6d3);
-            border-radius: 40px;
-            border: 14px solid #ffd700;
-            box-shadow: 0 60px 140px rgba(0, 0, 0, 0.9),
-                        inset 0 0 200px rgba(255, 215, 0, 0.4),
-                        0 0 100px #ff69b4;
-            padding: 65px 75px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            font-size: 2.3rem;
-            line-height: 2;
-            color: #880e4f;
-            opacity: 0;
-            transform: scale(0.86);
-            transition: all 1.6s cubic-bezier(0.7, 0, 0.3, 1);
+        /* Ангельская обложка */
+        #p0{
+            background:linear-gradient(135deg,#f5e6d3,#e8d5b8);
+            position:relative;overflow:hidden;
         }
-        .page.active {
-            opacity: 1;
-            z-index: 10;
-            transform: scale(1);
+        .angel-wings{
+            position:absolute;inset:0;
+            background:radial-gradient(circle at 50% 50%, rgba(255,255,255,0.28) 0%, transparent 60%);
+            filter:blur(110px);
+            animation:wings 12s infinite ease-in-out;
         }
-
-        h1 {
-            font-family: 'Dancing Script', cursive;
-            font-size: 6rem;
-            color: #880e4f;
-            text-shadow: 0 0 30px #ffd700;
-            margin-bottom: 40px;
-            animation: neonText 5s infinite;
+        .angel-wings::before,.angel-wings::after{
+            content:'';position:absolute;top:50%;width:50%;height:95%;
+            background:linear-gradient(45deg,transparent,rgba(255,255,255,0.45),transparent);
+            filter:blur(90px);
+            transform:translateY(-50%) rotate(38deg);
         }
-        @keyframes neonText {
-            0%, 100% {
-                text-shadow: 0 0 30px #ffd700;
-            }
-            50% {
-                text-shadow: 0 0 80px #ff69b4;
-            }
-        }
-
-        /* Обложка с ангельскими крыльями */
-        #p0 {
-            background: linear-gradient(135deg, #f5e6d3, #e8d5b8);
-            position: relative;
-            overflow: hidden;
-        }
-        .angel-wings {
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.25) 0%, transparent 60%);
-            filter: blur(100px);
-            animation: wings 12s infinite ease-in-out;
-        }
-        .angel-wings::before, .angel-wings::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            width: 48%;
-            height: 90%;
-            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-            filter: blur(80px);
-            transform: translateY(-50%) rotate(36deg);
-        }
-        .angel-wings::before {
-            left: -30%;
-            transform: translateY(-50%) rotate(-36deg);
-        }
-        .angel-wings::after {
-            right: -30%;
-            transform: translateY(-50%) rotate(36deg);
-        }
+        .angel-wings::before{left:-32%;transform:translateY(-50%) rotate(-38deg)}
+        .angel-wings::after{right:-32%;transform:translateY(-50%) rotate(38deg)}
 
         /* Летающие сердечки */
-        .heart {
-            position: fixed;
-            pointer-events: none;
-            font-size: 3.5rem;
-            animation: fly 20s linear forwards;
-            filter: drop-shadow(0 0 30px currentColor);
+        .heart{
+            position:fixed;pointer-events:none;
+            font-size:3.8rem;animation:fly 22s linear forwards;
+            filter:drop-shadow(0 0 35px currentColor);
         }
-        @keyframes fly {
-            0% {
-                transform: translateY(110vh) scale(0);
-                opacity: 0;
-            }
-            10% {
-                opacity: 0.9;
-            }
-            70% {
-                opacity: 0.9;
-            }
-            100% {
-                transform: translateY(-40vh) rotate(720deg) scale(0);
-                opacity: 0;
-            }
+        @keyframes fly{
+            0%{transform:translateY(110vh) scale(0);opacity:0}
+            10%{opacity:0.9}
+            70%{opacity:0.9}
+            100%{transform:translateY(-50vh) rotate(900deg) scale(0);opacity:0}
         }
-        .heart.pink {
-            color: #ff69b4;
-        }
-        .heart.red {
-            color: #ff1493;
-        }
-        .heart.name {
-            font-family: 'Great Vibes', cursive;
-            font-size: 10rem;
-            color: #ffd700;
-            text-shadow: 0 0 100px gold, 0 0 200px #ff1493;
+        .heart.pink{color:#ff69b4}
+        .heart.red{color:#ff1493}
+        .heart.name{
+            font-family:'Great Vibes',cursive;font-size:11rem;color:#ffd700;
+            text-shadow:0 0 120px gold,0 0 240px #ff1493;
         }
     </style>
 </head>
@@ -184,10 +111,8 @@
 <div class="book">
     <div class="page active" id="p0">
         <div class="angel-wings"></div>
-        <h1>Прости меня,<br>мой ангел</h1>
-        <p style="font-family:'Great Vibes',cursive;font-size:10rem;color:#880e4f;margin:40px 0">
-            Aigerim
-        </p>
+        <h1 style="font-size:6.8rem">Прости меня,<br>мой ангел</h1>
+        <p style="font-family:'Great Vibes',cursive;font-size:11rem;color:#880e4f;margin:50px 0">Aigerim</p>
         <p style="font-size:2rem">Коснись или скажи «дальше»</p>
     </div>
 
@@ -214,57 +139,62 @@
 <script>
     const pages = document.querySelectorAll('.page');
     let cur = 0;
-    function show(n) {
-        pages.forEach((p, i) => p.classList.toggle('active', i === n));
-    }
-    function next() {
-        if (cur < 14) {
-            cur++;
-            show(cur);
-        }
-    }
-    function prev() {
-        if (cur > 0) {
-            cur--;
-            show(cur);
-        }
-    }
+    function show(n) { pages.forEach((p,i) => p.classList.toggle('active', i===n)); }
+    function next() { if(cur < 14) { cur++; show(cur); } }
+    function prev() { if(cur > 0) { cur--; show(cur); } }
 
+    // Клик / свайп / колесо
     document.addEventListener('click', next);
     document.addEventListener('wheel', e => e.deltaY > 0 ? next() : prev());
     let tx = 0;
     document.addEventListener('touchstart', e => tx = e.touches[0].clientX);
     document.addEventListener('touchend', e => {
-        if (tx - e.changedTouches[0].clientX > 50) next();
-        if (e.changedTouches[0].clientX - tx > 50) prev();
+        if(tx - e.changedTouches[0].clientX > 50) next();
+        if(e.changedTouches[0].clientX - tx > 50) prev();
     });
 
-    // Летающие сердечки
+    // МНОГО СЕРДЕЧЕК
     setInterval(() => {
         const h = document.createElement('div');
         h.className = 'heart';
         h.classList.add(Math.random() > 0.5 ? 'pink' : 'red');
-        if (Math.random() > 0.7) h.classList.add('name');
-        h.style.left = Math.random() * 100 + 'vw';
-        h.style.animationDuration = (18 + Math.random() * 15) + 's';
+        if(Math.random() > 0.65) h.classList.add('name');
+        h.style.left = Math.random()*100 + 'vw';
+        h.style.animationDuration = (20 + Math.random()*18) + 's';
         document.body.appendChild(h);
         setTimeout(() => h.remove(), 40000);
-    }, 500);
+    }, 550);
 
-    // Музыка
+    // ГОЛОСОВОЕ УПРАВЛЕНИЕ — 100% работает на телефоне
+    let recognition;
+    if('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
+        recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+        recognition.lang = 'ru-RU';
+        recognition.continuous = true;
+        recognition.interimResults = false;
+
+        recognition.onresult = e => {
+            const cmd = e.results[e.results.length-1][0].transcript.toLowerCase();
+            if(cmd.includes('дальше') || cmd.includes('вперёд') || cmd.includes('следующая')) next();
+            if(cmd.includes('назад') || cmd.includes('предыдущая')) prev();
+        };
+
+        recognition.onerror = recognition.onend = () => setTimeout(() => recognition.start(), 500);
+        recognition.start();
+    }
+
+    // МУЗЫКА — ИГРАЕТ СРАЗУ И ВСЕГДА
     const music = document.getElementById('music');
     music.volume = 0.7;
-    const play = () => {
+    const unlock = () => {
         music.play().catch(() => {});
-        document.removeEventListener('click', play);
-        document.removeEventListener('touchstart', play);
-    }
-    document.addEventListener('click', play);
-    document.addEventListener('touchstart', play);
-    setTimeout(() => music.play().catch(() => {}), 800);
-    setInterval(() => {
-        if (music.paused) music.play().catch(() => {});
-    }, 3000);
+        document.removeEventListener('click', unlock);
+        document.removeEventListener('touchstart', unlock);
+    };
+    document.addEventListener('click', unlock);
+    document.addEventListener('touchstart', unlock);
+    setTimeout(() => music.play().catch(() => {}), 1000);
+    setInterval(() => { if(music.paused) music.play().catch(() => {}); }, 4000);
 </script>
 </body>
 </html>
