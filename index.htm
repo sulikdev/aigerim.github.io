@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Aigerim — мой ангел ♡</title>
+    <title>Aigerim — прости меня, жаным ♡</title>
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Dancing+Script:wght@700&family=Cormorant+Garamond:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         *{margin:0;padding:0;box-sizing:border-box}
@@ -14,147 +14,125 @@
             perspective:5000px;user-select:none;
         }
 
-        /* Реальный космос NASA */
+        /* Живой космос с анимацией */
         .cosmos{
             position:fixed;inset:0;z-index:-5;
-            background:url('https://images.unsplash.com/photo-1537420327992-d6e192287183?auto=format&fit=crop&q=80') center/cover;
-            background-attachment:fixed;
+            background:url('https://images.unsplash.com/photo-1537420327992-d6e192287183?auto=format&fit=crop&q=80') center/cover fixed;
+            animation:cosmosMove 120s linear infinite;
+        }
+        @keyframes cosmosMove{
+            0%{background-position:0% 0%}
+            100%{background-position:100% 100%}
         }
 
-        /* Гигантское сердце-туманность */
-        .heart-nebula{
-            position:fixed;top:50%;left:50%;
-            width:280vmax;height:280vmax;
-            background:radial-gradient(circle, #ff69b460 10%, #ff149340 30%, transparent 70%);
-            transform:translate(-50%,-50%);
-            filter:blur(160px);
-            animation:breath 30s infinite ease-in-out;
-            opacity:0.7;
-        }
-        @keyframes breath{
-            0%,100%{transform:translate(-50%,-50%) scale(0.9)}
-            50%{transform:translate(-50%,-50%) scale(1.5)}
-        }
-
-        /* Ультра-реалистичные звёзды (200 шт) */
-        .star{
-            position:fixed;
-            background:#fff;
-            border-radius:50%;
-            box-shadow:0 0 20px #fff,0 0 50px #fff,0 0 100px #88f;
-            animation:twinkle 4s infinite alternate;
-        }
-        @keyframes twinkle{
-            0%{opacity:0.7;transform:scale(1)}
-            100%{opacity:1;transform:scale(1.6)}
-        }
-
-        /* Книга — идеальный размер для всех экранов */
+        /* Неоново-бежевая книга */
         .book{
-            width:88vw;max-width:900px;
-            height:78vh;max-height:720px;
+            width:86vw;max-width:940px;
+            height:76vh;max-height:720px;
             position:relative;
             transform:rotateX(14deg);
-            animation:angelGlow 12s infinite ease-in-out;
+            animation:neonPulse 8s infinite ease-in-out;
             z-index:10;
         }
-        @keyframes angelGlow{
-            0%,100%{filter:drop-shadow(0 0 70px #ff69b4)}
-            50%{filter:drop-shadow(0 0 220px #ffd700)}
+        @keyframes neonPulse{
+            0%,100%{filter:drop-shadow(0 0 60px #ff69b4)}
+            50%{filter:drop-shadow(0 0 180px #ffd700) brightness(1.2)}
         }
 
         .page{
             position:absolute;inset:0;
-            background:linear-gradient(135deg,rgba(8,0,35,0.98),rgba(30,15,90,0.98));
-            border-radius:38px;
-            border:12px solid #ffd700;
-            box-shadow:0 50px 120px rgba(0,0,0,0.9),
-                       inset 0 0 180px rgba(255,215,0,0.35);
-            padding:60px 70px;
+            background:linear-gradient(135deg,#f5e6d3,#e8d5b8,#f5e6d3);
+            border-radius:40px;
+            border:14px solid #ffd700;
+            box-shadow:0 60px 140px rgba(0,0,0,0.9),
+                       inset 0 0 200px rgba(255,215,0,0.4),
+                       0 0 100px #ff69b4;
+            padding:65px 75px;
             display:flex;flex-direction:column;justify-content:center;align-items:center;
             text-align:center;
-            font-size:2.2rem;line-height:2;
-            opacity:0;transform:scale(0.85);
-            transition:all 1.8s cubic-bezier(0.7,0,0.3,1);
+            font-size:2.3rem;line-height:2;
+            color:#880e4f;
+            opacity:0;transform:scale(0.86);
+            transition:all 1.6s cubic-bezier(0.7,0,0.3,1);
         }
         .page.active{opacity:1;z-index:10;transform:scale(1)}
 
         h1{
-            font-family:'Dancing Script',cursive;
-            font-size:5.5rem;
-            background:linear-gradient(45deg,#ffd700,#fff,#ff69b4);
-            -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+            font-family:'Dancing Script',cursive;font-size:6rem;
+            color:#880e4f;
+            text-shadow:0 0 30px #ffd700;
             margin-bottom:40px;
-            animation:glow 6s infinite;
+            animation:neonText 5s infinite;
         }
-        @keyframes glow{0%,100%{filter:brightness(1)}50%{filter:brightness(2.3)}}
+        @keyframes neonText{0%,100%{text-shadow:0 0 30px #ffd700}50%{text-shadow:0 0 80px #ff69b4}}
 
-        /* Ангельская обложка */
+        /* Обложка с ангельскими крыльями */
         #p0{
-            background:linear-gradient(135deg,rgba(0,0,30,0.98),rgba(20,0,80,0.98));
+            background:linear-gradient(135deg,#f5e6d3,#e8d5b8);
             position:relative;overflow:hidden;
         }
         .angel-wings{
             position:absolute;inset:0;
-            background:radial-gradient(circle at 50% 50%, rgba(255,255,255,0.2) 0%, transparent 60%);
+            background:radial-gradient(circle at 50% 50%, rgba(255,255,255,0.25) 0%, transparent 60%);
             filter:blur(100px);
-            animation:wings 10s infinite ease-in-out;
+            animation:wings 12s infinite ease-in-out;
         }
         .angel-wings::before,.angel-wings::after{
-            content:'';position:absolute;top:50%;width:45%;height:90%;
-            background:linear-gradient(45deg,transparent,rgba(255,255,255,0.35),transparent);
+            content:'';position:absolute;top:50%;width:48%;height:90%;
+            background:linear-gradient(45deg,transparent,rgba(255,255,255,0.4),transparent);
             filter:blur(80px);
-            transform:translateY(-50%) rotate(34deg);
+            transform:translateY(-50%) rotate(36deg);
         }
-        .angel-wings::before{left:-30%;transform:translateY(-50%) rotate(-34deg)}
-        .angel-wings::after{right:-30%;transform:translateY(-50%) rotate(34deg)}
+        .angel-wings::before{left:-30%;transform:translateY(-50%) rotate(-36deg)}
+        .angel-wings::after{right:-30%;transform:translateY(-50%) rotate(36deg)}
+
+        /* Летающие сердечки (розовые и красные) */
+        .heart{
+            position:fixed;pointer-events:none;
+            font-size:3.5rem;
+            animation:fly 20s linear forwards;
+            filter:drop-shadow(0 0 30px currentColor);
+        }
+        @keyframes fly{
+            0%{transform:translateY(110vh) scale(0);opacity:0}
+            10%{opacity:0.9}
+            70%{opacity:0.9}
+            100%{transform:translateY(-40vh) rotate(720deg) scale(0);opacity:0}
+        }
+        .heart.pink{color:#ff69b4}
+        .heart.red{color:#ff1493}
+        .heart.name{font-family:'Great Vibes',cursive;font-size:10rem;color:#ffd700;
+                  text-shadow:0 0 100px gold,0 0 200px #ff1493}
     </style>
 </head>
 <body>
 
 <div class="cosmos"></div>
-<div class="heart-nebula"></div>
-
-<!-- 200 ультра-реалистичных звёзд -->
-<script>
-    for(let i=0;i<200;i++){
-        const s=document.createElement('div');
-        s.className='star';
-        const size=Math.random()*4+1.5;
-        s.style.width=s.style.height=size+'px';
-        s.style.top=Math.random()*100+'%';
-        s.style.left=Math.random()*100+'%';
-        s.style.animationDuration=(3+Math.random()*4)+'s';
-        s.style.animationDelay=Math.random()*5+'s';
-        document.body.appendChild(s);
-    }
-</script>
 
 <div class="book">
-    <!-- Обложка -->
     <div class="page active" id="p0">
         <div class="angel-wings"></div>
-        <h1 style="font-size:6.2rem">Прости меня,<br>мой ангел</h1>
-        <p style="font-family:'Great Vibes',cursive;font-size:9rem;color:#ffd700;margin:40px 0">
+        <h1 style="font-size:6.5rem">Прости меня,<br>мой ангел</h1>
+        <p style="font-family:'Great Vibes',cursive;font-size:10rem;color:#880e4f;margin:40px 0">
             Aigerim
         </p>
-        <p style="font-size:1.8rem">Коснись или скажи «дальше»</p>
+        <p style="font-size:2rem">Коснись или скажи «дальше»</p>
     </div>
 
-    <div class="page" id="p1"><h1>Ты — мой ангел</h1><p>Ты спустилась с небес<br>Чтобы спасти мою душу<br>Твои крылья — из света</p></div>
-    <div class="page" id="p2"><h1>Ты — мой свет</h1><p>Ты светишь ярче всех звёзд<br>Ты разгоняешь мою тьму<br>Ты — моё солнце</p></div>
-    <div class="page" id="p3"><h1>Ты — моё чудо</h1><p>Я не верил в сказки<br>Пока не встретил тебя<br>Ты — живое волшебство</p></div>
-    <div class="page" id="p4"><h1>Ты — мой рай</h1><p>Ты — то место<br>Где я хочу быть вечно<br>Ты — мой рай</p></div>
-    <div class="page" id="p5"><h1>Ты — моя муза</h1><p>Все звёзды поют твоё имя<br>Когда ты улыбаешься</p></div>
+    <div class="page" id="p1"><h1>Ты — мой ангел</h1><p>Ты спустилась с небес<br>Чтобы спасти мою душу</p></div>
+    <div class="page" id="p2"><h1>Ты — мой свет</h1><p>Ты светишь ярче всех звёзд<br>Ты — моё солнце</p></div>
+    <div class="page" id="p3"><h1>Ты — моё чудо</h1><p>Я не верил в сказки<br>Пока не встретил тебя</p></div>
+    <div class="page" id="p4"><h1>Ты — мой рай</h1><p>Ты — то место<br>Где я хочу быть вечно</p></div>
+    <div class="page" id="p5"><h1>Ты — моя муза</h1><p>Все звёзды поют твоё имя</p></div>
     <div class="page" id="p6"><h1>Ты — моя вечность</h1><p>Время остановилось<br>Когда ты вошла в мою жизнь</p></div>
-    <div class="page" id="p7"><h1>Ты — мой бриллиант</h1><p>Ты сияешь ярче всех звёзд<br>Ты — моё сокровище</p></div>
-    <div class="page" id="p8"><h1>Ты — моя мечта</h1><p>Каждую ночь я вижу тебя<br>Каждый день живу тобой</p></div>
-    <div class="page" id="p9"><h1>Ты — моя душа</h1><p>Без тебя я — пустая оболочка<br>С тобой — живой</p></div>
-    <div class="page" id="p10"><h1>Ты — моя судьба</h1><p>Я искал тебя всю жизнь<br>Через тысячи звёзд</p></div>
-    <div class="page" id="p11"><h1>Ты — мой космос</h1><p>Ты — вся моя Вселенная<br>Ты — мой бесконечный мир</p></div>
-    <div class="page" id="p12"><h1>Я исправлю всё</h1><p>Я стану лучше<br>Я буду достоин тебя<br>Я буду твоим щитом</p></div>
-    <div class="page" id="p13"><h1>КАКОЙ Я ГЛУПЕЦ</h1><p>Я чуть не потерял<br>Своего ангела<br>Прости меня, Айгерим</p></div>
-    <div class="page" id="p14"><h1>Вернись ко мне</h1><p>Моя душа плачет без тебя<br>Моё сердце — только твоё<br>Я люблю тебя вечно<br>Мой ангел. Моя Aigerim ♡</p></div>
+    <div class="page" id="p7"><h1>Ты — мой бриллиант</h1><p>Ты сияешь ярче всех звёзд</p></div>
+    <div class="page" id="p8"><h1>Ты — моя мечта</h1><p>Каждый день я живу тобой</p></div>
+    <div class="page" id="p9"><h1>Ты — моя душа</h1><p>Без тебя я — пустой</p></div>
+    <div class="page" id="p10"><h1>Ты — моя судьба</h1><p>Я искал тебя всю жизнь</p></div>
+    <div class="page" id="p11"><h1>Я исправлю всё</h1><p>Я стану лучше<br>Я буду достоин тебя</p></div>
+    <div class="page" id="p12"><h1>КАКОЙ Я ГЛУПЕЦ</h1><p>Я чуть не потерял<br>Своего ангела</p></div>
+    <div class="page" id="p13"><h1>Прости меня</h1><p>Я был слеп<br>Теперь я вижу только тебя</p></div>
+    <div class="page" id="p14"><h1>Вернись ко мне</h1><p>Моя душа плачет без тебя<br>Я люблю тебя вечно<br>Мой ангел. Моя Aigerim ♡</p></div>
 </div>
 
 <audio id="music" loop preload="auto">
@@ -177,37 +155,41 @@
         if(e.changedTouches[0].clientX-tx>50)prev();
     });
 
-    // ГОЛОСОВОЕ УПРАВЛЕНИЕ — 100% работает на телефоне
+    // МНОГО СЕРДЕЧЕК
+    setInterval(()=>{
+        const h=document.createElement('div');
+        h.className='heart';
+        h.classList.add(Math.random()>0.5?'pink':'red');
+        if(Math.random()>0.7) h.classList.add('name');
+        h.style.left=Math.random()*100+'vw';
+        h.style.animationDuration=(18+Math.random()*15)+'s';
+        document.body.appendChild(h);
+        setTimeout(()=>h.remove(),40000);
+    },500);
+
+    // ГОЛОС — без лагов
     let recognition;
     if('webkitSpeechRecognition' in window || 'SpeechRecognition' in window){
         recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
         recognition.lang = 'ru-RU';
         recognition.continuous = true;
         recognition.interimResults = false;
-
         recognition.onresult = e => {
-            const text = e.results[e.results.length-1][0].transcript.toLowerCase();
-            if(text.includes('дальше') || text.includes('вперёд') || text.includes('следующая')) next();
-            if(text.includes('назад') || text.includes('предыдущая')) prev();
+            const cmd = e.results[e.results.length-1][0].transcript.toLowerCase();
+            if(cmd.includes('дальше')||cmd.includes('вперёд'))next();
+            if(cmd.includes('назад'))prev();
         };
-
-        recognition.onerror = () => setTimeout(()=>recognition.start(),1000);
-        recognition.onend = () => recognition.start();
         recognition.start();
     }
 
-    // МУЗЫКА — играет 100% даже на телефоне
-    const music = document.getElementById('music');
-    music.volume = 0.7;
-    const unlockAudio = () => {
-        music.play().catch(()=>{});
-        document.removeEventListener('touchstart', unlockAudio);
-        document.removeEventListener('click', unlockAudio);
-    };
-    document.addEventListener('touchstart', unlockAudio);
-    document.addEventListener('click', unlockAudio);
-    setTimeout(()=>music.play().catch(()=>{}),1000);
-    setInterval(()=>{if(music.paused)music.play().catch(()=>{})},4000);
+    // МУЗЫКА — 100% играет
+    const music=document.getElementById('music');
+    music.volume=0.7;
+    const play=()=>{music.play().catch(()=>{});document.removeEventListener('click',play);document.removeEventListener('touchstart',play)}
+    document.addEventListener('click',play);
+    document.addEventListener('touchstart',play);
+    setTimeout(()=>music.play().catch(()=>{}),800);
+    setInterval(()=>{if(music.paused)music.play().catch(()=>{})},3000);
 </script>
 </body>
 </html>
