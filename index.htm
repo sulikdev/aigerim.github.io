@@ -1,145 +1,360 @@
 <!DOCTYPE html>
+<html lang="ru">
 <head>
-<title>BY SULEYMAN</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Прости меня, Жаным • Aigerim</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Cormorant+Garamond:wght@300;400;600&family=Montserrat:wght@200;300;400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #ffd700;
+            --pink: #ff69b4;
+            --rose: #ec407a;
+            --burgundy: #880e4f;
+            --cream: #fffaf0;
+            --sky: #1a0033;
+        }
+
+        * { margin:0; padding:0; box-sizing:border-box; }
+        html, body { height:100%; overflow:hidden; background:#000; }
+
+        body {
+            background: radial-gradient(circle at 50% 30%, #2a0055, #000 70%);
+            font-family: 'Montserrat', sans-serif;
+            color: #fff;
+            perspective: 2000px;
+        }
+
+        /* Небесный рай */
+        .sky {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, #1a0033, #2d0055, #4a0077);
+            overflow: hidden;
+            z-index: -3;
+        }
+
+        .stars {
+            position: absolute;
+            width: 100%; height: 100%;
+            background: transparent;
+        }
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 0 15px #fff;
+            animation: twinkle 4s infinite alternate;
+        }
+        @keyframes twinkle { 0%,100% { opacity:0.4; transform:scale(1); } 50% { opacity:1; transform:scale(1.4); } }
+
+        /* Облака из света */
+        .cloud {
+            position: absolute;
+            width: 600px; height: 200px;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.15), transparent);
+            border-radius: 100px;
+            filter: blur(30px);
+            animation: floatCloud 40s infinite linear;
+        }
+        @keyframes floatCloud { 0% { transform: translateX(-800px); } 100% { transform: translateX(200vw); } }
+
+        /* Золотые лучи */
+        .ray {
+            position: absolute;
+            top: -50%;
+            left: 50%;
+            width: 4px;
+            height: 300vh;
+            background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+            transform-origin: top center;
+            opacity: 0.3;
+            animation: rotateRay 120s infinite linear;
+        }
+        @keyframes rotateRay { from { transform: translateX(-50%) rotate(0deg); } to { transform: translateX(-50%) rotate(360deg); } }
+
+        /* Парящие сердца → превращаются в её имя */
+        .heart {
+            position: absolute;
+            font-size: 2.5rem;
+            pointer-events: none;
+            animation: rise 18s forwards linear;
+        }
+        @keyframes rise {
+            0%   { transform: translateY(120vh) rotate(0deg) scale(0); opacity: 0; }
+            15%  { opacity: 1; }
+            85%  { opacity: 1; }
+            90%  { content: "A"; color: var(--gold); font-family: 'Playfair Display', serif; font-size: 5rem; text-shadow: 0 0 40px var(--gold); }
+            100% { transform: translateY(-20vh) rotate(1080deg) scale(0); opacity: 0; }
+        }
+
+        /* Бриллиантовый дождь */
+        .diamond {
+            position: absolute;
+            width: 6px; height: 6px;
+            background: var(--gold);
+            transform: rotate(45deg);
+            box-shadow: 0 0 20px var(--gold);
+            animation: fall 12s linear infinite;
+        }
+        @keyframes fall {
+            0%   { transform: translateY(-100px) rotate(45deg); opacity: 0; }
+            10%  { opacity: 1; }
+            90%  { opacity: 1; }
+            100% { transform: translateY(120vh) rotate(45deg); opacity: 0; }
+        }
+
+        /* Центральная книга — настоящий 3D-шедевр */
+        .book-container {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 900px;
+            height: 600px;
+            perspective: 3000px;
+            z-index: 10;
+        }
+
+        .book {
+            position: absolute;
+            width: 100%; height: 100%;
+            transform-style: preserve-3d;
+            transform: rotateX(15deg) rotateY(-10deg);
+            transition: transform 1s;
+        }
+
+        .cover, .page {
+            position: absolute;
+            width: 100%; height: 100%;
+            backface-visibility: hidden;
+            border-radius: 15px;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.7);
+            background: linear-gradient(135deg, #111, #222);
+            border: 6px solid var(--gold);
+            background-size: 200% 200%;
+            overflow: hidden;
+        }
+
+        .cover {
+            background: linear-gradient(45deg, var(--burgundy), #aa2255);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: var(--gold);
+            text-align: center;
+            animation: coverGlow 4s infinite alternate;
+        }
+        @keyframes coverGlow {
+            0% { box-shadow: 0 0 30px var(--rose); }
+            100% { box-shadow: 0 0 80px var(--gold), inset 0 0 60px rgba(255,215,0,0.3); }
+        }
+
+        .cover h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4.5rem;
+            letter-spacing: 8px;
+            text-shadow: 0 0 30px var(--gold);
+            background: linear-gradient(45deg, var(--gold), #fff, var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: titleShine 6s infinite;
+        }
+        @keyframes titleShine {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.6); }
+        }
+
+        .page {
+            transform: rotateY(0deg);
+            transform-origin: left center;
+            transition: transform 1.4s cubic-bezier(0.7, 0, 0.3, 1);
+            background: #fffdf8 url('https://images.unsplash.com/photo-1519742866993-66d3cfef4bbd?auto=format&fit=crop&q=80') center/cover;
+            background-blend-mode: overlay;
+            padding: 60px;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            line-height: 2;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .page.flipped {
+            transform: rotateY(-180deg);
+        }
+
+        .page h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            color: var(--burgundy);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        /* Навигация */
+        .nav {
+            position: fixed;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100;
+        }
+        .nav button {
+            background: rgba(136,14,79,0.8);
+            color: var(--gold);
+            border: 2px solid var(--gold);
+            padding: 15px 40px;
+            margin: 0 15px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
+            transition: all 0.4s;
+        }
+        .nav button:hover {
+            background: var(--gold);
+            color: var(--burgundy);
+            box-shadow: 0 0 30px var(--gold);
+        }
+
+        /* Музыка */
+        #music {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: rgba(0,0,0,0.5);
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-<h1>HOLLYWOOD GROUP - EVOLUTION FORTUNE</h1>
-<fieldset class="ui-wheel-of-fortune">
-  <ul>
-    <li>Bəxtini birdaha sına</li>
-    <li>Tea Pot</li>
-    <li>Limonade</li>
-    <li>5% Endirim</li>
-    <li>10% Endirim</li>
-    <li>15% Endirim</li>
-    <li>Dondurma</li>
-    <li>Desert</li>
-    <li>Mürəbbə</li>
-    <li>Heç birşey</li>
-    <li>Shot 1 ədəd</li>
-    <li>Evolution Special</li>
-  </ul>
-  <button type="button">SPIN</button>
-</fieldset>
-  <style>
-:where(.ui-wheel-of-fortune) {
-  --_items: 12;
-  all: unset;
-  aspect-ratio: 1 / 1;
-  container-type: inline-size;
-  direction: ltr;
-  display: grid;
-  position: relative;
-  width: 100%;
-  &::after {
-    aspect-ratio: 1/cos(30deg);
-    background-color: crimson;
-    clip-path: polygon(50% 100%,100% 0,0 0);
-    content: "";
-    height: 4cqi;
-    position: absolute;
-    place-self: start center;
-    scale: 1.4;
-  }
 
-  & > * { position: absolute; }
+    <div class="sky">
+        <div class="stars"></div>
+        <div class="cloud" style="top:15%; animation-delay:0s;"></div>
+        <div class="cloud" style="top:30%; animation-delay:15s; width:800px;"></div>
+        <div class="cloud" style="top:50%; animation-delay:30s; width:700px;"></div>
+        <div class="ray" style="transform: translateX(-50%) rotate(0deg);"></div>
+        <div class="ray" style="transform: translateX(-50%) rotate(45deg);"></div>
+        <div class="ray" style="transform: translateX(-50%) rotate(90deg);"></div>
+    </div>
 
-  button {
-    aspect-ratio: 1 / 1;
-    background: hsla(0, 0%, 100%, .8);
-    border: 0;
-    border-radius: 50%;
-    cursor: pointer;
-    font-size: 5cqi;
-    place-self: center;
-    width: 20cqi;
-  }
+    <div class="book-container">
+        <div class="book">
+            <!-- Обложка -->
+            <div class="cover" id="cover">
+                <h1>ПРОСТИ МЕНЯ,<br>ЖАНЫМ</h1>
+                <p style="font-size:3rem; margin-top:30px; font-family:'Playfair Display',serif;">Aigerim</p>
+            </div>
 
-  ul {
-    all: unset;
-    clip-path: inset(0 0 0 0 round 50%);
-    display: grid;
-    inset: 0;
-    place-content: center start;
+            <!-- Страница 1 -->
+            <div class="page" id="p1">
+                <h2>Я люблю тебя на всех языках мира</h2>
+                <p>I love you • Je t’aime • Ti amo • Te amo • Ich liebe dich<br>
+                   Я тебя люблю • Сені жақсы көремін • Seni seviyorum<br>
+                   Mahal kita • Saranghae • Aishiteru • Wo ai ni • Eu te amo</p>
+                <p style="margin-top:40px; font-style:italic;">И на всех языках Вселенной — тоже.</p>
+            </div>
 
-    li {
-      align-content: center;
-      aspect-ratio: 1 / calc(2 * tan(180deg / var(--_items)));
-      background: hsl(calc(360deg / var(--_items) * calc(var(--_idx))), 100%, 75%);
-      clip-path: polygon(0% 0%, 100% 50%, 0% 100%);
-      display: grid;
-      font-size: 5cqi;
-      grid-area: 1 / -1;
-      padding-left: 1ch;
-      rotate: calc(360deg / var(--_items) * calc(var(--_idx) - 1));
-      transform-origin: center right;
-      user-select: none;
-      width: 50cqi;
+            <!-- Страница 2 -->
+            <div class="page" id="p2">
+                <h2>Ты — моё чудо</h2>
+                <p>Ты — мой личный бриллиант, который сияет даже в темноте.<br>
+                   Архитектор моей улыбки и хозяйка всех моих мыслей.<br>
+                   Самый нежный рассвет и самый тёплый закат.<br>
+                   Королева моего сердца, для которой я готов построить целый мир.<br>
+                   Волшебница, превращающая обычные дни в сказку.</p>
+            </div>
 
-      &:nth-of-type(1) { --_idx: 1; }
-      &:nth-of-type(2) { --_idx: 2; }
-      &:nth-of-type(3) { --_idx: 3; }
-      &:nth-of-type(4) { --_idx: 4; }
-      &:nth-of-type(5) { --_idx: 5; }
-      &:nth-of-type(6) { --_idx: 6; }
-      &:nth-of-type(7) { --_idx: 7; }
-      &:nth-of-type(8) { --_idx: 8; }
-      &:nth-of-type(9) { --_idx: 9; }
-      &:nth-of-type(10) { --_idx: 10; }
-      &:nth-of-type(11) { --_idx: 11; }
-      &:nth-of-type(12) { --_idx: 12; }
-    }
-  }
-}
+            <!-- Страница 3 -->
+            <div class="page" id="p3">
+                <h2>КАКОЙ Я ИШАК…</h2>
+                <p>Я был слеп, глуп и недостоин твоей любви.<br>
+                   Прости меня, Айгерим. Прости за каждую секунду боли.<br>
+                   Без тебя даже рай — просто пустое место.<br><br>
+                   <strong>Вернись, жаным.<br>Я тебя люблю больше жизни.</strong></p>
+            </div>
+        </div>
+    </div>
 
-/* for demo */
-* { box-sizing: border-box; }
-body {
-  font-family: system-ui, sans-serif;
-  padding: 5cqi;
-} 
-  </style>
-  <script>
-    
+    <div class="nav">
+        <button id="prev">◄ Назад</button>
+        <button id="next">Вперёд ►</button>
+    </div>
 
-function wheelOfFortune(selector) {
-  const node = document.querySelector(selector);
-  if (!node) return;
+    <div id="music" onclick="toggleMusic()">♪</div>
+    <audio id="song" loop>
+        <source src="https://cdn.pixabay.com/download/audio/2022/03/24/audio_7e7175b7d3.mp3?filename=george-michael-careless-whisper-15285.mp3" type="audio/mp3">
+    </audio>
 
-  const spin = node.querySelector('button');
-  const wheel = node.querySelector('ul');
-  let animation;
-  let previousEndDegree = 0;
+    <script>
+        // Звёзды
+        for(let i=0; i<300; i++){
+            let s = document.createElement('div');
+            s.className = 'star';
+            s.style.width = s.style.height = Math.random()*3 + 'px';
+            s.style.left = Math.random()*100 + 'vw';
+            s.style.top = Math.random()*100 + 'vh';
+            s.style.animationDelay = Math.random()*4 + 's';
+            document.querySelector('.stars').appendChild(s);
+        }
 
-  spin.addEventListener('click', () => {
-    if (animation) {
-      animation.cancel(); // Reset the animation if it already exists
-    }
+        // Сердца → имя
+        setInterval(() => {
+            let h = document.createElement('div');
+            h.className = 'heart';
+            h.innerHTML = '♥';
+            h.style.left = Math.random()*100 + 'vw';
+            h.style.animationDuration = (15 + Math.random()*10) + 's';
+            document.body.appendChild(h);
+            setTimeout(() => h.remove(), 20000);
+        }, 800);
 
-    const randomAdditionalDegrees = Math.random() * 360 + 1800;
-    const newEndDegree = previousEndDegree + randomAdditionalDegrees;
+        // Бриллианты
+        setInterval(() => {
+            let d = document.createElement('div');
+            d.className = 'diamond';
+            d.style.left = Math.random()*100 + 'vw';
+            d.style.animationDuration = (8 + Math.random()*8) + 's';
+            document.body.appendChild(d);
+            setTimeout(() => d.remove(), 15000);
+        }, 400);
 
-    animation = wheel.animate([
-      { transform: `rotate(${previousEndDegree}deg)` },
-      { transform: `rotate(${newEndDegree}deg)` }
-    ], {
-      duration: 4000,
-      direction: 'normal',
-      easing: 'cubic-bezier(0.440, -0.205, 0.000, 1.130)',
-      fill: 'forwards',
-      iterations: 1
-    });
+        // Книга
+        const pages = ['cover', 'p1', 'p2', 'p3'];
+        let current = 0;
 
-    previousEndDegree = newEndDegree;
-  });
-}
+        document.getElementById('next').onclick = () => {
+            if(current < pages.length-1){
+                document.getElementById(pages[current]).classList.add('flipped');
+                current++;
+            }
+        };
 
-// Usage
-wheelOfFortune('.ui-wheel-of-fortune');
+        document.getElementById('prev').onclick = () => {
+            if(current > 0){
+                current--;
+                document.getElementById(pages[current]).classList.remove('flipped');
+            }
+        };
 
+        document.getElementById('cover').onclick = () => {
+            if(current === 0) document.getElementById('next').click();
+        };
 
-
-  </script>
-  
-  </body>
+        // Музыка
+        const audio = document.getElementById('song');
+        function toggleMusic(){
+            if(audio.paused) audio.play();
+            else audio.pause();
+        }
+        // Автостарт после клика
+        document.body.onclick = () => { if(audio.paused) audio.play(); document.body.onclick = null; };
+    </script>
+</body>
 </html>
